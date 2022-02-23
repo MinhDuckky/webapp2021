@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="http://fonts.googleapis.com/css?family=Work+Sans:400">
+  <link rel="stylesheet" type="text/css" href="css/service.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <scipt src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></scipt>
+  <title>Clinic's MRI</title>
+</head>
+<body>
+
+<!-- Sidebar menu -->
+
+<div class="sidebar">
+  <div class="menu">
+    <div class="sidebar-header">
+      <span>
+        <a href="index.html">
+      	  <img src="Images/logo.png" alt="logo">
+        </a>
+      </span>
+    </div>
+    <div id="navbar">
+      <div class="menu_list">
+        <ul>
+          <br>
+          <li><a href="service.html"><i class="fa fa-qrcode"></i>Datasets</a></li>
+          <li><a href="description.html"><i class="fa fa-th-list"></i>Descriptions</a></li>
+          <li><a href="annotator.html"><i class="fa fa-user"></i>Annotators</a></li>
+          <li><a href="references.html"><i class="fa fa-link"></i>References</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+
+<header>
+  <div class="hcontainer">
+    <div class="search">
+      <form action="<?php $_PHP_SELF ?>" method="GET">
+        <input type="search" name ="search" placeholder="Search">
+        <button type="submit" style="width: 60px; height: 60px; 
+         background-color: white; border-style: none;">
+          <i class="fa fa-search" style="font-size:24px;"></i></button>
+      </form>
+    </div>
+    
+    <nav>
+      <ul>
+        <li>
+          <a href="index.html" class="link">Home</a>
+        </li>
+        <li>
+          <a href="service.html" class="current">Services</a>
+        </li>
+      </ul>
+    </nav>  
+  </div>
+</header>
+
+<?php
+
+include_once 'php/db.php';
+
+$db = new DB;
+$pdo = $db->connect();
+
+if(isset($_GET["search"])) {
+  $sql = "SELECT * FROM participants WHERE ID LIKE '%".$_GET["search"]."%'
+  OR age LIKE '%".$_GET["search"]."%'
+  OR gender LIKE '%".$_GET["search"]."%'
+  OR exp_group LIKE '%".$_GET["search"]."%'
+  OR Date LIKE '%".$_GET["search"]."%'
+  OR Annotator LIKE '%".$_GET["search"]."%'
+  GROUP BY ID";
+}
+else {
+  $sql = "SELECT * FROM participants GROUP BY ID";
+}
+
+$stmt = $pdo->query($sql);
+
+?>
+
+<br>
+<div id="main-content">
+  <!-- Datasets tab -->
+  <section class="datasets" id="datasets">
+    <h2>DATASETS</h2>
+
+    <a href="#adddata" id="addbtn">
+      <button class="add"><i class="fa fa-plus"></i>ADD</button>
+    </a>
+    <a href="#deldata" id="delbtn">
+      <button class="del"><i class="fa fa-minus"></i>DEL</button>
+    </a>
+
+    
+    <form action="php/add.php" method="POST" enctype="multipart/form-data">
+      <div id="adddata">
+        <div class="adddatabox">
+          <div class="inputdata">
+            <a href="service.html" class="closeadddatabox">
+              <i class="fa fa-times-circle"></i>
+            </a>
+
+            <div id="input-id">
+              <h4>ID:</h4>
+              <div class="idinput">
+                <input type="text" placeholder="Ex: sub-01" id="id" name="ID"/>
+              </div>
+              <p>8 characters, including numbers and letters</p>
+            </div>
+
+            <div>
+              <h4>Age:</h4>
+              <div class="idinput">
+                <input type="number" placeholder="Age" id="age" name="age"/>
+              </div>
+            </div>
+        
+            <div><h4>Gender:</h4>
+              <select name="gender">
+                <option value="n/a">n/a</option>
+                <option value="male">male</option>
+                <option value="female">female</option>
+              </select>
+            </div>
+
+            <div><h4>Experimental Group:</h4>
+              <select name="group">
+                <option value="control">control</option>
+                <option value="depr">depr</option>
+              </select>
+            </div>
+
+            <div>
+              <h4>IQ:</h4>
+              <div class="idinput">
+                <input type="text" placeholder="n/a" id="iq" value="n/a" name="IQ"/>
+              </div>
+            </div>
+
+            <div><h4>ICD-10:</h4>
+              <select name="ICD-10">
+                <option value="n/a">n/a</option>
+                <option value="F32.0">F32.0 Mild Depressive</option>
+                <option value="F32.1">F32.1 Moderate Depressive</option>
+                <option value="F34.1">F34.1 Dysthymia</option>
+                <option value="F34.9">F34.9 Persistent Mood Disorder</option>
+              </select>
+            </div>
+          </div>
+        
+          <div class="inputimage">
+            <div>
+              <div class="adddate">
+                <h4>Date:</h4>
+                <input type="date" id="date" name="Date">
+              </div>
+
+              <h4>MRI image/Link:</h4>
+              <div class="choosepicture">
+                <input type="file" id="mriImg" accept="image/png, image/jpg, image/jpeg" class="inputfile" name="file">
+            
+                <label for="mriImg">Choose a picture</label>
+                <div id="displayImg"></div>
+              </div>
+  
+              <div>
+                <h4>Annotators:</h4>
+                <div class="idinput">
+                  <input type="text" placeholder="Annotator" id="annotator" name="Annotator"/>
+                </div>
+              </div>
+            </div>
+        
+            <div>
+              <a>
+                <button type="submit" name="submit">CREATE</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <form action="php/del.php" method="POST">
+      <div id="deldata">
+        <div class="deldatabox">
+          <a href="service.html" class="closedeldatabox">
+            <i class="fa fa-times-circle"></i>
+          </a>
+          <div id="input-id">
+            <h4>ID:</h4>
+            <div class="idinput">
+              <input type="text" placeholder="Ex: sub-01" id="id" name="ID"/>
+            </div>
+            <p>8 characters, including numbers and letters</p>
+          </div>
+  
+          <div>
+            <a>
+              <button type="submit" name="del">DEL</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <table id="dataTable" class="table">
+      
+      <tr>
+        <th class="rows1">ID</th>
+        <th class="rows1">Age</th>
+        <th class="rows1">Gender</th>
+        <th class="rows1">Group</th>
+        <th class="rows1">IQ</th>
+        <th class="rows1">ICD-10</th>
+        <th class="rows2">Date</th>
+        <th class="rows3">MRI Image</th>
+        <th class="rows2">Annotator</th>
+      </tr>
+
+    <div style="display: none;"><?php while($row = $stmt->fetch()) : ?></div>
+     <tr>
+       <td><?php echo htmlspecialchars($row['ID']); ?></td>
+       <td><?php echo htmlspecialchars($row['age']); ?></td>
+       <td><?php echo htmlspecialchars($row['gender']); ?></td>
+       <td><?php echo htmlspecialchars($row['exp_group']); ?></td>
+       <td><?php echo htmlspecialchars($row['IQ']); ?></td>
+       <td><?php echo htmlspecialchars($row['ICD-10']); ?></td>
+       <td><?php echo htmlspecialchars($row['Date']); ?></td>
+       <td><a href="<?php echo htmlspecialchars($row['IMG_path']); ?>" target="_blank">
+         <?php
+         $temp = explode("/", $row['IMG_path']);
+
+         echo htmlspecialchars(end($temp)); 
+         ?></a></td>
+       <td><?php echo htmlspecialchars($row['Annotator']); ?></td>
+     </tr>
+     <?php endwhile; ?>
+      
+    </table>
+  </section>
+<script src="service.js"></script>
+</div>
+
+</body>
+</html>

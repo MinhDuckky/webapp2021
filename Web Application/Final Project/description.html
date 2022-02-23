@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="http://fonts.googleapis.com/css?family=Work+Sans:400">
+  <link rel="stylesheet" type="text/css" href="css/service.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <scipt src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></scipt>
+  <title>Clinic's MRI</title>
+</head>
+<body>
+
+<!-- Sidebar menu -->
+
+<div class="sidebar">
+  <div class="menu">
+    <div class="sidebar-header">
+      <span>
+        <a href="index.html">
+      	  <img src="Images/logo.png" alt="logo">
+        </a>
+      </span>
+    </div>
+    <div id="navbar">
+      <div class="menu_list">
+        <ul>
+          <br>
+          <li><a href="service.html"><i class="fa fa-qrcode"></i>Datasets</a></li>
+          <li><a href="description.html"><i class="fa fa-th-list"></i>Descriptions</a></li>
+          <li><a href="annotator.html"><i class="fa fa-user"></i>Annotators</a></li>
+          <li><a href="references.html"><i class="fa fa-link"></i>References</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+
+<header>
+    <div class="hcontainer">
+        <div class="search">
+            
+        </div>
+      <nav>
+        <ul>
+          <li>
+            <a href="index.html" class="link">Home</a>
+          </li>
+          <li>
+            <a href="service.html" class="current">Services</a>
+          </li>
+        </ul>
+      </nav>  
+    </div>
+  </header>
+
+
+<br>
+<div id="main-content">
+
+  <!-- Descriptions tab -->
+  <section id="descriptions" class="descriptions">
+    <br>
+    <h2>DESCRIPTIONS</h2>
+    
+    <p>
+      International Statistical Classification of 
+      Diseases and Related Health Problems 10th Revision,
+      Levels:<br>
+      <span class="note">"F32.0"</span>: "Mild depressive episode",<br>
+      <span class="note">"F32.1"</span>: "Moderate depressive episode",<br>
+	    <span class="note">"F34.1"</span>: "Dysthymia",<br>
+	    <span class="note">"F34.9"</span>: "Persistent mood disorder, unspecified"<br>
+    </p>
+
+    <table id="dataTable" class="table">
+      
+        <tr>
+          <th class="rows1">ID</th>
+          <th class="rows1">Age</th>
+          <th class="rows1">Gender</th>
+          <th class="rows1">Group</th>
+          <th class="rows1">IQ</th>
+          <th class="rows1">ICD-10</th>
+          <th class="rows2">Date</th>
+          <th class="rows3">MRI Image</th>
+          <th class="rows2">Annotator</th>
+        </tr>
+        <tr>
+          <td class="rows1">Unique participant identifier</td>
+          <td class="rows1">Age of the participant (years)</td>
+          <td class="rows1">Gender of the participant (male/female)</td>
+          <td class="rows1">Experimental group (depression/control)</td>
+          <td class="rows1">IQ scores on Raven's Progressive Matrices</td>
+          <td class="rows1">International Statistical Classification of 
+              Diseases and Related Health Problems 10th Revision *</td>
+          <td class="rows2">Date of record</td>
+          <td class="rows3">Image file path</td>
+          <td class="rows2">Who records this data</td>
+        </tr>
+      
+      </table>
+    </section>
+
+</div>
+
+</body>
+</html>

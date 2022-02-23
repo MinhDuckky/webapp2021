@@ -1,0 +1,658 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 400;
+}
+
+/* Sidebar begins here */
+
+.sidebar {
+  z-index: 2;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar .menu {
+  position: fixed;
+  background-color: #75b5ff;
+  width: 275px;
+  height: 100%;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-header img {
+  padding: .7em 20px;
+  width: 75%;
+}
+
+.sidebar .menu_list {
+  position: absolute;
+  width: 100%;
+}
+
+.menu_list ul, .contact ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu_list li, .contact li {
+  display: block;
+  padding: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.menu_list i, .contact i {
+  color: #27408B;
+  font-size: 18px;
+  padding-right: 10px;
+}
+
+.menu_list a, .contact a {
+  color: #27408B;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+}
+
+.menu_list li:hover, .contact li:hover,
+.menu_list li:active, .contact li:active,
+.menu_list li:focus, .contact li:focus {
+  background-color: #fff;
+  border-left: 5px solid #27408B;
+}
+
+.menu_list li:hover a, .menu_list li:hover i,
+.contact li:hover a, .contact li:hover i,
+.menu_list li:active a, .menu_list li:active i,
+.contact li:active a, .contact li:active i,
+.menu_list li:focus a, .menu_list li:focus i,
+.contact li:focus a, .contact li:focus i {
+  color: #27408B;
+}
+
+.contact {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+
+/* Sidebar ends here */
+
+/* Navbar begins here */
+
+header {
+  position: fixed;
+  /* left: 275px; */
+  top: 0;
+  width: 100%;
+  height: 65px;
+  background: white;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(72, 118, 255, 0.3);
+}
+
+.hcontainer {
+  width: 90%;
+  padding: 0;
+}
+
+.search {
+  position: absolute;
+  left: 275px;
+  top: 0;
+  width: auto;
+  height: 65px;
+  padding: 0;
+  position: relative;
+  float: left;
+}
+
+.search input {
+  font-size: 1.2rem;
+  border: 0;
+  outline: 0;
+  margin: 1rem;
+  padding: 0.5rem;
+  height: 38px;
+}
+
+.search input:focus {
+  border: 1px solid rgba(72, 118, 255, 1);
+  border-radius: 30px;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.search i {
+  color: #4876FF;
+}
+
+nav {
+  float: right;
+}
+
+nav ul {
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 50px;
+  padding-top: .5em;
+}
+
+nav a {
+  padding-top: 23.5px;
+  position: relative;
+}
+
+.current {
+  color: #27408B;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.current::before {
+  content: "";
+  display: block;
+  height: 5px;
+  background-color: #27408B;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.link { 
+  color: #4876FF;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.link::before {
+  content: "";
+  display: block;
+  height: 5px;
+  background-color: #27408B;
+  position: absolute;
+  top: 0;
+  width: 0%;
+  transition: all ease-in-out 250ms;
+}
+
+.link:hover {
+  color: #27408B;
+}
+
+.link:hover::before {
+  width: 100%;
+}
+
+/* Navbar ends here */
+
+/* Datasets begins here */
+
+#main-content {
+  /* position: relative; */
+  margin-left: 275px;
+}
+
+.datasets, .descriptions,
+.annotators, .references {
+  position: relative;
+  padding: 1em;
+  height: 100vh;
+}
+
+.datasets {
+  top: 20px;
+}
+
+.descriptions, .references {
+  top: 50px;
+}
+
+.datasets a {
+  text-decoration: none;
+}
+
+.datasets h2 {
+  color: #27408B;
+  font-size: 2rem;
+  margin-left: 20px;
+}
+
+/* Add dataset begins */
+
+.add {
+  display: flex;
+  padding: 1.5em 2em;
+  color: #27408B;
+  background-color: #75b5ff;
+  font-weight: bold;
+  border: 1px solid white;
+  border-radius: 30px;
+  cursor: pointer;
+  position: absolute;
+  right: 170px;
+  top: 30px;
+}
+
+.add i {
+  padding-right: 10px;
+}
+
+.add:hover, .add:hover i,
+.add:active, .add:active i {
+  color: #27408B;
+  background-color: white;
+}
+
+.add:hover, .add:active {
+  border: 1px solid #27408B;
+}
+
+#adddata {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  visibility: hidden;
+  display: none;
+  transition: all ease-in-out 250ms;
+}
+
+#adddata:target {
+  visibility: visible;
+  display: block;
+}
+
+.adddatabox {
+  width: 70%; 
+  margin: 0 auto;
+  position: relative; 
+  display: grid;
+  grid-template-areas: "inputimage inputdata";
+  padding: 30px;
+  background-color: #75b5ff; 
+  box-shadow: 5px 5px 2px rgba(72, 118, 255, 0.4);
+  border-radius: 15px;
+}
+
+.inputfile {
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+}
+
+.inputfile + label {
+  font-size: 1em;
+  font-weight: 700;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  color: #27408B;
+  background-color: white;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.input2:focus + label,
+.inputfile + label:hover {
+  color: white;
+  background-color: #4876FF;
+}
+
+.choosepicture {
+  display: inline-block;
+}
+
+#displayImg { 
+  display: block;
+  width: 300px;
+  height: 200px;
+  margin: 1rem 1rem 1rem 0;
+  border: none;
+  box-shadow: 2px 2px 0px #27408B;
+  background-position: center;
+  background-size: cover;
+}
+
+.closeadddatabox {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  float: right;
+  color: #27408B;
+  font-size: 1.8rem;
+}
+
+.adddatabox h4 {
+  color: #27408B;
+  font-size: 1.2rem;
+}
+
+.idinput input{
+  display: flex;
+  outline: 0;
+  border: 0;
+  border-radius: 5px;
+  padding: .75em;
+  font-size: 1em;
+}
+
+.idinput input:focus {
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+#input-id p {
+  font-size: 0.8em;
+  color: #444;
+}
+
+input[type="date"] {
+  padding: .75em;
+  font-size: 1em;
+  font-family: "Roboto Mono", monospace;
+  background: white;
+  border: 2px solid #4876FF;
+  border-radius: 5px;
+  color: #27408B;
+  outline: none;
+  cursor: pointer;
+}
+
+select {
+  font-size: 1em;
+  padding: .8em;
+  background: white;
+  color: #27408B;
+  border: 0;
+  border-radius: 5px;;
+  outline: 0;
+  appearance: none;
+  cursor: pointer;
+}
+
+.adddatabox button {
+  display: inline-block;
+  border: 0;
+  border-radius: 5px;
+  color: #27408B;
+  background-color: white;
+  margin: 2rem 2rem 0 0;
+  padding: 1rem 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.adddatabox button:hover {
+  background-color: #4876FF;
+  color: white;
+}
+
+/* Add dataset end */
+
+#dataTable {
+  width: 100%;
+  display: block;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+#dataTable td, th {
+  border: 1px solid rgba(36, 112, 139, 0.3);
+  padding: 8px;
+}
+
+#dataTable th {
+  text-align: center;
+  background-color: #75b5ff;
+  color: white;
+}
+
+#dataTable td {
+  text-align: center;
+  color: #27408B;
+  background-color: white;
+}
+
+.rows1 {
+  width: 10%;
+}
+
+.rows2 {
+  width: 20%;
+}
+
+.rows3 {
+  width: 30%;
+}
+
+.btn-medium {
+  border: none;
+  padding: 0.5em;
+  color: white;
+  background-color: #75b5ff;
+  cursor: pointer;
+}
+
+.btn-medium small {
+  font-size: 1em;
+  font-weight: 1000;
+}
+
+.btn-medium:hover {
+  background-color: white;
+  color: #27408B;
+}
+
+/* Del dataset begins */
+
+.del {
+  display: flex;
+  padding: 1.5em 2em;
+  color: #27408B;
+  background-color: #75b5ff;
+  font-weight: bold;
+  border: 1px solid white;
+  border-radius: 30px;
+  cursor: pointer;
+  position: absolute;
+  right: 40px;
+  top: 30px;
+}
+
+.del i {
+  padding-right: 10px;
+}
+
+.del:hover, .del:hover i,
+.del:active, .del:active i {
+  color: #27408B;
+  background-color: white;
+}
+
+.del:hover, .del:active {
+  border: 1px solid #27408B;
+}
+
+#deldata {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  visibility: hidden;
+  display: none;
+  transition: all ease-in-out 250ms;
+}
+
+#deldata:target {
+  visibility: visible;
+  display: block;
+}
+
+.deldatabox {
+  width: 70%; 
+  margin: 0 auto;
+  position: relative; 
+  display: grid;
+  grid-template-areas: "inputimage inputdata";
+  padding: 30px;
+  background-color: #75b5ff; 
+  box-shadow: 5px 5px 2px rgba(72, 118, 255, 0.4);
+  border-radius: 15px;
+}
+
+.closedeldatabox {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  float: right;
+  color: #27408B;
+  font-size: 1.8rem;
+}
+
+.deldatabox h4 {
+  color: #27408B;
+  font-size: 1.2rem;
+}
+
+.deldatabox button {
+  display: inline-block;
+  border: 0;
+  border-radius: 5px;
+  color: #27408B;
+  background-color: white;
+  margin: 4.5rem 2rem 0 0;
+  padding: 1rem 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.deldatabox button:hover {
+  background-color: #4876FF;
+  color: white;
+}
+
+/* Datasets ends */
+
+/* Description begins */
+
+.descriptions h2 {
+  color: #27408B;
+  font-size: 2em;
+  margin: 0 0 20px 20px;
+}
+
+.descriptions p {
+  color: #27408B;
+  font-size: 1.2em;
+  margin: 0 0 20px 20px;
+}
+
+.note {
+  font-weight: bold;
+}
+
+/* Descriptions ends */
+
+/* Annotators begins */
+
+.annotators {
+  /* position: relative; */
+  top: 50px;
+  padding: 1em;
+  height: 100vh;
+}
+
+.annotator-info {
+  display: grid;
+  grid-template-areas: "annoinfo annoinfo";
+}
+
+.infobox {
+  display: grid;
+  grid-template-areas: "info picture";
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto;
+  margin: 3em;
+  padding: 2em;
+  border: none;
+  border-radius: 10px;
+  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); */
+}
+
+.info {
+  grid-area: info;
+  position: relative;
+}
+
+.info h3, h5 {
+  color: #27408B;
+}
+
+.skills {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.skill {
+  background-color: #EEE;
+  padding: 2px;
+  border-radius: 15px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #FFF;
+  font-weight: bold;
+}
+
+.skill::before {
+  content: attr(data-skill);
+  display: inline-block;
+  padding: 5px 0 5px 10px;
+  border-radius: inherit;
+}
+
+.skill.front::before {
+  background-color: #75b5ff;
+}
+
+.skill.communication::before {
+  width: calc(100% - 10px);
+}
+.skill.medicine::before {
+  width: calc(100% - 10px);
+}
+.skill.care::before {
+  width: calc(100% - 10px);
+}
+.skill.quality::before {
+  width: calc(100% - 10px);
+}
+.skill.diagnosis::before {
+  width: calc(100% - 10px);
+}
+
+.infobox span {
+  grid-area: picture;
+  font-size: 3em;
+  margin: 2em;
+  color: #75b5ff;
+}
+
+/* Annotators ends */
